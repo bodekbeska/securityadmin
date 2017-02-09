@@ -1,0 +1,31 @@
+
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Search</label>
+  <div class="col-10">
+    <form novalidate [formGroup]="form">
+    <input formControlName="searchBox" class="form-control" type="text" value="" id="example-text-input" placeholder="search here">
+  </form>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <span *ngIf="loading"><img src="http://phrs.appl.kp.org:8280/securityadmin/assets/balls.gif" alt=""></span>
+  <div class="col" *ngFor="let e of employees" >
+      <div class="card" style="width: 20rem;" >
+      <img *ngIf="e.source==='HRIS'" class="card-img-top img-fluid" src="https://cnndcpv02719.dcld.nndc.kp.org:18081/portal/img/{{e.nuid}}.jpg" alt="Card image cap" onerror="this.src='http://lorempixel.com/500/500/';">
+      <img *ngIf="e.source!='HRIS'"  class="card-img-top img-fluid physicianimage" src="http://cskpcloudwp2551.cloud.kp.org:8280/servlet/PhysicianPhoto?emplid={{e.emplid}}" alt="Card image cap" onerror="this.src='http://lorempixel.com/140/170/';">
+      <div class="card-block">
+        <h4 class="card-title">{{e.name}}</h4>
+        <p class="card-text">{{e.nuid}} {{e.jobCodeDescr}} {{e.deptDescr}}</p>
+        <a routerLink="/details/{{e.nuid}}" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+

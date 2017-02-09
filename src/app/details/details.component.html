@@ -1,0 +1,352 @@
+<a routerLink="/one" class="btn btn-primary">Back to search</a>
+<br />
+
+
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+<span *ngIf="loading"><img src="http://phrs.appl.kp.org:8280/securityadmin/assets/balls.gif" alt=""></span>
+
+    <div class="row">        
+        <div class="col-2">
+         
+         <img *ngIf="thisEmployee.source==='HRIS'" class="card-img-top photo img-fluid" src="https://cnndcpv02719.dcld.nndc.kp.org:18081/portal/img/{{thisEmployee.nuid}}.jpg" alt="Card image cap" onerror="this.src='http://lorempixel.com/500/500/';">
+          <img *ngIf="thisEmployee.source!='HRIS'"  class="card-img-top photo img-fluid physicianimage" src="http://cskpcloudwp2551.cloud.kp.org:8280/servlet/PhysicianPhoto?emplid={{thisEmployee.emplid}}" alt="Card image cap" onerror="this.src='http://lorempixel.com/140/170/';">
+
+        </div>
+          <div class="col-8">
+         <h4>{{thisEmployee.name}}</h4>
+          <p class="lead">{{thisEmployee.jobCodeDescr}} <br /> <span style="font-size: 0.8em;">{{thisEmployee.nuid}}</span>
+          <br /> 
+          <a  style="font-size: 0.8em;" href="javascript:void(0)"  data-toggle="modal" data-target="#userInfo" (click)="thisUser()">more info...</a> </p> 
+        </div>
+        <div class="col">
+        
+        </div>
+    </div>
+
+
+   
+    <hr class="my-4">
+    <div class="row">
+          <div class="col">
+         {{thisEmployee.email}}
+        </div>
+        <div class="col">
+         {{thisEmployee.emplid}}
+        </div>
+        <div class="col">
+         {{thisEmployee.source}}
+        </div>
+    </div>
+      <div class="row">
+          <div class="col">
+         {{thisEmployee.bUnitDescr}}
+        </div>
+        <div class="col">
+         {{thisEmployee.locationDescr}}
+        </div>
+        <div class="col">
+       <span *ngIf="thisEmployee.md_mgr_nuid!=' '"> Manager:<a href="mailto:{{thisEmployee.md_mgr_nuid}}"> {{thisEmployee.md_mgr_nuid}}</a> </span> 
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="userInfo" tabindex="-1" role="dialog" aria-labelledby="userInfo" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">User Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            
+        <div class="row">
+          <div class="col-4">bUnit: {{thisEmployee.bUnit}} </div>
+        <div class="col-4">bUnitDescr: {{thisEmployee.bUnitDescr}} </div>
+        <div class="col-4">dept: {{thisEmployee.dept}} </div>
+         <div class="col-4">deptDescr: {{thisEmployee.deptDescr}} </div>
+          <div class="col-4">email: {{thisEmployee.email}} </div>
+           <div class="col-4">emplid: {{thisEmployee.emplid}} </div>
+            <div class="col-4">firstName: {{thisEmployee.firstName}} </div>
+             <div class="col-4">lastName: {{thisEmployee.lastName}} </div>
+              <div class="col-4">jobCode: {{thisEmployee.jobCode}} </div>
+               <div class="col-4">jobCodeDescr: {{thisEmployee.jobCodeDescr}} </div>
+                <div class="col-4">location: {{thisEmployee.location}} </div>
+                 <div class="col-4">locationDescr: {{thisEmployee.locationDescr}} </div>
+                  <!--<div class="col-4">name: {{thisEmployee.name}} </div>-->
+                   <div class="col-4">nuid: {{thisEmployee.nuid}} </div>
+                    <div class="col-4">source: {{thisEmployee.source}} </div>
+                     <div class="col-4">md_mgr_nuid: {{thisEmployee.md_mgr_nuid}} </div>
+                      <div class="col-4">md_phone_work: {{thisEmployee.md_phone_work}} </div>
+                       <div class="col-4">md_phone_home: {{thisEmployee.md_phone_home}} </div>
+                        <div class="col-4">md_phone_cell: {{thisEmployee.md_phone_cell}} </div>
+                         <div class="col-4">job_family: {{thisEmployee.job_family}} </div>
+                          <div class="col-4">md_jobfamily_descr: {{thisEmployee.md_jobfamily_descr}} </div>
+                           <div class="col-4">md_last_four_ssn: {{thisEmployee.md_last_four_ssn}} </div>
+                            <div class="col-4">md_adm_ldr: {{thisEmployee.md_adm_ldr}} </div>
+                             <div class="col-4">empl_status: {{thisEmployee.empl_status}} </div>
+                              <div class="col-4">hire_dt: {{thisEmployee.hire_dt}} </div>
+                               <div class="col-4">last_hire_dt: {{thisEmployee.last_hire_dt}} </div>
+                                <div class="col-4">termination_dt: {{thisEmployee.termination_dt}} </div>
+                                 <div class="col-4">company: {{thisEmployee.company}} </div>
+                                  <div class="col-4">md_entity: {{thisEmployee.md_entity}} </div>
+                                   <div class="col-4">rundttm: {{thisEmployee.rundttm}} </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Users for   {{currentRole}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<span *ngIf="loading"><img src="/securityadmin/assets/balls.gif" alt=""></span>
+100 limit     
+
+<ul class="list-group">
+  <li *ngFor="let u of listOfUsersForThisRole" class="list-group-item">{{u.OPRID}} : {{u.OPRDEFNDESC}}</li>
+</ul>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<h5> iHUB</h5>
+
+<div class="card text-center">
+ <table class="table table-bordered table-hover"  >
+  <thead>
+    <tr>
+      <th > <a href="javascript:void(0)" (click)="sortNow(iHUBRoles, 'rolename')"> rolename</a> </th>
+      <th > <a href="javascript:void(0)" (click)="sortNow(iHUBRoles, 'descr')"> descr</a></th>
+      <th>prcsprflcl</th>
+      <th>oprclass</th>
+      <th>rowsecclass</th>
+      <th >  <a href="javascript:void(0)" (click)="sortNow(iHUBRoles, 'dyna')"> dyna</a></th>
+      <th>acctlock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of iHUBRoles">
+      <th scope="row"><a href="javascript:void(0)"  data-toggle="modal" data-target="#exampleModalLong" (click)="thisRole('iHUB', r.rolename)">  {{r.rolename}}</a></th>
+      <td>{{r.descr}}</td>
+      <td>{{r.prcsprflcl}}</td>
+      <td>{{r.oprclass}}</td>
+      <td>{{r.rowsecclass}}</td>
+      <td>{{r.dyna}}</td>
+      <td>{{r.acctlock}}</td>
+    </tr>    
+  </tbody>
+</table>
+  </div>
+<br />
+  <h5> HCM</h5>
+ <div class="card text-center">
+ <table class="table table-bordered table-hover">
+  <thead>
+      <tr>
+      <th> <a href="javascript:void(0)" (click)="sortNow(HCMRoles, 'rolename')"> rolename</a> </th>
+      <th> <a href="javascript:void(0)" (click)="sortNow(HCMRoles, 'descr')"> descr</a></th>
+      <th>prcsprflcl</th>
+      <th>oprclass</th>
+      <th>rowsecclass</th>
+      <th>  <a href="javascript:void(0)" (click)="sortNow(HCMRoles, 'dyna')"> dyna</a></th>
+      <th>acctlock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of HCMRoles">
+      <th scope="row"><a href="javascript:void(0)"  data-toggle="modal" data-target="#exampleModalLong" (click)="thisRole('HCM', r.rolename)">  {{r.rolename}}</a></th>
+      <td>{{r.descr}}</td>
+      <td>{{r.prcsprflcl}}</td>
+      <td>{{r.oprclass}}</td>
+      <td>{{r.rowsecclass}}</td>
+      <td>{{r.dyna}}</td>
+      <td>{{r.acctlock}}</td>
+    </tr>    
+  </tbody>
+</table>
+  </div>
+  <br />
+  <h5> ELM</h5>
+ <div class="card text-center">
+ <table class="table table-bordered table-hover">
+  <thead>
+   <tr>
+      <th> <a href="javascript:void(0)" (click)="sortNow(ELMRoles, 'rolename')"> rolename</a> </th>
+      <th> <a href="javascript:void(0)" (click)="sortNow(ELMRoles, 'descr')"> descr</a></th>
+      <th>prcsprflcl</th>
+      <th>oprclass</th>
+      <th>rowsecclass</th>
+      <th>  <a href="javascript:void(0)" (click)="sortNow(ELMRoles, 'dyna')"> dyna</a></th>
+      <th>acctlock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of ELMRoles">
+      <th scope="row"><a href="javascript:void(0)"  data-toggle="modal" data-target="#exampleModalLong" (click)="thisRole('ELM', r.rolename)">  {{r.rolename}}</a></th>
+      <td>{{r.descr}}</td>
+      <td>{{r.prcsprflcl}}</td>
+      <td>{{r.oprclass}}</td>
+      <td>{{r.rowsecclass}}</td>
+      <td>{{r.dyna}}</td>
+      <td>{{r.acctlock}}</td>
+    </tr>    
+  </tbody>
+</table>    
+    </div>  
+<br />
+
+<h5> CRM</h5>
+ <div class="card text-center">
+ <table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th> <a href="javascript:void(0)" (click)="sortNow(CRMRoles, 'rolename')"> rolename</a> </th>
+      <th> <a href="javascript:void(0)" (click)="sortNow(CRMRoles, 'descr')"> descr</a></th>
+      <th>prcsprflcl</th>
+      <th>oprclass</th>
+      <th>rowsecclass</th>
+      <th>  <a href="javascript:void(0)" (click)="sortNow(CRMRoles, 'dyna')"> dyna</a></th>
+      <th>acctlock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of CRMRoles">
+      <th scope="row"><a href="javascript:void(0)"  data-toggle="modal" data-target="#exampleModalLong" (click)="thisRole('CRM', r.rolename)">  {{r.rolename}}</a></th>
+      <td>{{r.descr}}</td>
+      <td>{{r.prcsprflcl}}</td>
+      <td>{{r.oprclass}}</td>
+      <td>{{r.rowsecclass}}</td>
+      <td>{{r.dyna}}</td>
+      <td>{{r.acctlock}}</td>
+    </tr>    
+  </tbody>
+</table>
+  </div>
+<br />
+
+<h5> Business Unit</h5>
+<div class="card text-center">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>OPRID</th>
+          <th>BUnit</th>
+          <th>Descr</th>
+          <th>Short Descr</th>    
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of BURoles">
+          <th scope="row">{{r.oprid}}</th>
+          <td>{{r.business_unit}}</td>
+          <td>{{r.descr}}</td>
+          <td>{{r.descrshort}}</td>        
+        </tr>        
+      </tbody>
+    </table>
+  </div>
+<br />
+<h5> Time & Labor</h5>
+ <div class="card text-center">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>OPRID</th>
+          <th>BUnit</th>
+          <th><a href="javascript:void(0)" (click)="sortNow(TLRoles, 'descr')"> Descr</a></th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of TLRoles">
+          <th scope="row">{{r.oprid}}</th>
+          <td>{{r.business_unit}}</td>
+          <td>{{r.descr}}</td>             
+        </tr>        
+      </tbody>
+    </table>
+  </div>
+<br />
+
+<h5> MDTRV</h5>
+<div class="card text-center"> 
+ <table class="table table-bordered table-hover"  >
+  <thead>
+    <tr>
+      <th>MD_NUID</th>
+      <th>USER_TYPE</th>
+      <th>APPROVAL_FLAG</th>
+      <th>COMMENTS_FLAG</th>
+      <th>NAME_DISPLAY</th>
+      <th>USEROPTN</th>
+      <th>USERIDTYPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of MDTRVRoles">
+      <th scope="row">{{r.md_nuid}}</th>
+      <td>{{r.user_type}}</td>
+      <td>{{r.approval_flag}}</td>
+      <td>{{r.comments_flag}}</td>
+      <td>{{r.name_display}}</td>
+      <td>{{r.useroptn}}</td>
+      <td>{{r.useridtype}}</td>
+    </tr>    
+  </tbody>
+</table>
+</div>
+
+<br />
+
+<h5> Share Drive</h5>
+<div class="card text-center"> 
+ <table class="table table-bordered table-hover"  >
+  <thead>
+    <tr>   
+      <th>group_name</th>
+      <th>host</th>
+      <th>network_path</th>
+      <th>active</th>
+      <th>owner_nuid</th>
+ 
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of SDSecurity">
+      <td>{{r.group_name}}</td>
+      <td>{{r.host}}</td>
+      <td>{{r.network_path}}</td>
+      <td>{{r.active}}</td>
+      <td>{{r.owner_nuid}}</td>
+ 
+    </tr>    
+  </tbody>
+</table>
+</div>
