@@ -12,6 +12,7 @@ import { AdminComponent } from './admin/admin.component';
 
 import { EmployeeService } from './employee.service';
 import { SorterService } from './sorter.service';
+import { HistoryComponent } from './history/history.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SorterService } from './sorter.service';
     OneComponent,
     NavbarComponent,
     DetailsComponent,
-    AdminComponent
+    AdminComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,6 @@
+<ul class="list-group">
+  <li *ngFor="let h of history" class="list-group-item">
+     <a routerLink="/details/{{h.nuid}}" > {{h.nuid}}: {{h.name}} </a> &nbsp;  
+    <span  style="font-size: 0.8em; color: gray;"> {{h.timestamp | date: 'short'}}</span>
+  </li> 
+</ul>

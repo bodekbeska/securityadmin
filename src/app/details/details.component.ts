@@ -30,7 +30,7 @@ listOfUsersForThisRole: any[];
 
   constructor(private route: ActivatedRoute, private es: EmployeeService, private sorter: SorterService) { 
     this.thisEmployee ={
-           bUnit: '',
+    bUnit: '',
     bUnitDescr : '',
     dept: '',
     deptDescr: '',
@@ -56,7 +56,7 @@ listOfUsersForThisRole: any[];
 	  empl_status: '',
 	  hire_dt: '',
 	  last_hire_dt: '',
-	  termination_dt: '',
+	  termination_dt: '',        
 	  company: '',
 	  md_entity: '',
 	  rundttm: ''
@@ -72,10 +72,21 @@ listOfUsersForThisRole: any[];
        // In a real app: dispatch action to load the details here.
        console.log(this.id);
 
-
+ var history =[];
+   
+    if (localStorage.getItem("history") !== null) {
+              history = JSON.parse(localStorage.getItem("history"));
+    }
+     
 
       this.es.searchEmployee(this.id )
-      .subscribe(data => { this.thisEmployee = data[0]; this.loading=false;  });
+      .subscribe(data => { 
+         this.thisEmployee = data[0]; 
+         this.loading=false;  
+         this.thisEmployee.timestamp=Date.now().toString();
+         history.push(this.thisEmployee);
+         localStorage.setItem("history", JSON.stringify(history));
+      });
 
       this.es.getRolesEmployee("iHUB", this.id)
       .subscribe(data => { this.iHUBRoles = data; });

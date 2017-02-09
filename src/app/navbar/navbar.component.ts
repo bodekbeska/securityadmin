@@ -11,68 +11,39 @@ import { Employee } from '../employee';
 export class NavbarComponent implements OnInit {
 path: string;
 public thisUser : any;
-username : string;
-user : Employee;
 
-  constructor(private _router:Router, private es: EmployeeService) { 
- 
-     this.user ={
-    bUnit: '',
-    bUnitDescr : '',
-    dept: '',
-    deptDescr: '',
-    email: '',
-    emplid: '',
-    firstName: '',
-    lastName: '',
-    jobCode: '',
-    jobCodeDescr: '',
-    location: '',
-    locationDescr: '',
-    name: '',
-    nuid: '',
-    source: '',
-    md_mgr_nuid : '',
-    md_phone_work: '',
-    md_phone_home: '',
-    md_phone_cell: '',
-     job_family: '',
-	  md_jobfamily_descr: '',
-	  md_last_four_ssn: '',
-	  md_adm_ldr: '',
-	  empl_status: '',
-	  hire_dt: '',
-	  last_hire_dt: '',
-	  termination_dt: '',
-	  company: '',
-	  md_entity: '',
-	  rundttm: ''
-}; 
-  }
+  constructor(private _router:Router, private es: EmployeeService) {}
 
   ngOnInit() {
-     
-      this._router.events.subscribe(val=>{       
-        this.path=val.url;
+    this.thisUser = {
+        photoURL:'',
+        md_nuid:'',
+        last_name:'',
+        first_name:''
+      }     
+      this._router.events.subscribe(val=>this.path=val.url);
+
+if (localStorage.getItem("adminUser") === null) {
+        this.es.getUser().subscribe(data=>{
+          this.thisUser=data;
+          localStorage.setItem("adminUser", JSON.stringify(this.thisUser)); 
       });
-    
+}else{
+ this.thisUser = JSON.parse(localStorage.getItem("adminUser"));
+}
+
+      
+     
 
 
-
-      this.es.getUser().subscribe(data=>
-        {
-                this.thisUser=data;
-                this.thisUser = this.thisUser.substr(3);
-                this.es.searchEmployee(this.thisUser )
-                .subscribe((data : Employee) => {
-                    this.user = data[0]; 
-                    console.log(this.user);               
-                  });
-              }
-      );
-
-
-    
+/*
+     var history =[{}];
+     history.push({name:'nick', nuid:'z383205', timestamp: Date.now().toString()})
+      history.push({name:'fal', nuid: 'a123456', timestamp: Date.now().toString()})
+      localStorage.setItem("history", JSON.stringify(history));
+      var storedHistory = JSON.parse(localStorage.getItem("history"));
+      console.log(storedHistory);
+    */
   }
 
 }

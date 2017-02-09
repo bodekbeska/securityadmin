@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { OneComponent } from '../one/one.component';
 import { AdminComponent } from '../admin/admin.component';
 import { DetailsComponent } from '../details/details.component';
+import { HistoryComponent } from '../history/history.component';
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path:'admin',
     component: AdminComponent
+  },  
+  {
+    path:'history',
+    component: HistoryComponent
   }
 ];
 
