@@ -36,14 +36,7 @@ if (localStorage.getItem("adminUser") === null) {
      
 
 
-/*
-     var history =[{}];
-     history.push({name:'nick', nuid:'z383205', timestamp: Date.now().toString()})
-      history.push({name:'fal', nuid: 'a123456', timestamp: Date.now().toString()})
-      localStorage.setItem("history", JSON.stringify(history));
-      var storedHistory = JSON.parse(localStorage.getItem("history"));
-      console.log(storedHistory);
-    */
+
   }
 
 }

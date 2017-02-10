@@ -4,6 +4,7 @@ import { OneComponent } from '../one/one.component';
 import { AdminComponent } from '../admin/admin.component';
 import { DetailsComponent } from '../details/details.component';
 import { HistoryComponent } from '../history/history.component';
+import { TodosComponent } from '../todos/todos.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,11 +26,15 @@ const routes: Routes = [
   {
     path:'history',
     component: HistoryComponent
+  },  
+  {
+    path:'todos',
+    component: TodosComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
   providers: []
 })

@@ -3,16 +3,19 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 
 import { AppComponent } from './app.component';
 import { OneComponent } from './one/one.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DetailsComponent } from './details/details.component';
 import { AdminComponent } from './admin/admin.component';
+import { HistoryComponent } from './history/history.component';
+import { TodosComponent } from './todos/todos.component';
 
 import { EmployeeService } from './employee.service';
 import { SorterService } from './sorter.service';
-import { HistoryComponent } from './history/history.component';
+
 
 
 @NgModule({
@@ -22,14 +25,16 @@ import { HistoryComponent } from './history/history.component';
     NavbarComponent,
     DetailsComponent,
     AdminComponent,
-    HistoryComponent
+    HistoryComponent,
+    TodosComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AsyncLocalStorageModule
   ],
   providers: [EmployeeService, SorterService],
   bootstrap: [AppComponent]

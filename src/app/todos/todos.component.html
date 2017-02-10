@@ -1,0 +1,12 @@
+<form novalidate [formGroup]="form">
+  <div class="form-group">
+    <label for="taskItem">Add Todo</label>
+    <input formControlName="taskItem" type="text" [(ngModel)]="taskItem" class="form-control" id="taskItem" aria-describedby="emailHelp" placeholder="enter to do list">
+   
+  </div>
+   <button type="submit" class="btn btn-primary" (click)="addTask()">Add</button>  
+</form>
+<br />
+<ul class="list-group">
+  <li *ngFor="let t of tasks; let i = index" class="list-group-item"><button (click)="deleteItem(i)" class="btn btn-primary  btn-sm" type="submit">Done </button> &nbsp; {{t.task}} </li> 
+</ul>
